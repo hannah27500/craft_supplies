@@ -1,0 +1,106 @@
+body {
+    margin:0px;
+    background-color: white;
+    font-family: "Roboto Flex",sans-serif;
+    background-color:rgb(249, 249, 244);
+    
+}
+
+/* Ensure cards in a row are all equal height */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #fff; /* Optional, just for clarity */
+    border: 1px solid #ddd;
+    margin-bottom: 20px; /* Space between rows */
+    max-width: 100%; /* Prevent card from overflowing */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Set a fixed height for the images */
+    object-fit: cover; /* Ensure the aspect ratio is maintained */
+}
+
+.card-body {
+    flex-grow: 1; /* Makes the body take the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+/* Optional: Ensure buttons stick to the bottom */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bg-gray {
+    background-color: #4a4646;
+
+   
+}
+header h1 {
+    font-size: 35px;
+    color: #3b6853;
+    background-color: #d6e1c1;
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+}
+footer {
+    background-color: #22464c;
+    color: white;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.thank-you {
+    background-color:  #255861;
+    
+    padding: 10px;
+    border-top: 20px solid white;
+}
+
+footer a {
+    color: white;
+   
+}
+
+.nav-link {
+    font-size: 18px;
+  }
+.nav-link {
+    color:white;
+}
+
+ 
+
+ .nav-link:hover {
+    color:#dae4c8;
+ }
+
+.buttons {
+    display:flex;
+    flex-wrap: wrap;
+    margin:10px;
+    justify-content: center;
+}
+
