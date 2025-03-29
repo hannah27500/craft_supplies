@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.mycompany.craftwebsite.ProductDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,17 +25,18 @@
         </c:when>
         <c:otherwise>
             <div class="row">
-                <c:forEach var="product" items="${sessionScope.cart}">
+                <c:forEach var="cartItem" items="${sessionScope.cart}">
+                     <c:set var="product" value="${ProductDAO.getProductByID(cartItem.productId)}"/>
                     <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="images/${product.productID}.jpg" class="card-img-top" alt="${product.productName}">
+                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">${product.productName}</h5>
                                 <p class="card-text">${product.productDesc}</p>
                                 <p class="card-text">$${product.price}</p>
+                                <p class="card-text">Quantity: ${cartItem.quantity}</p>
                                 <form action="CartServlet" method="post">
-                                    <input type="hidden" name="cartItemID" value="${cartItem.cartItemID}">
-                                   
+                                    <input type="hidden" name="cartItemID" value="${cartItem.productId}">
+                                    <input type="hidden" name="action" value="remove">
                                     <button type="submit" class="btn btn-danger">Remove</button>
                                 </form>
                             </div>
@@ -42,6 +44,9 @@
                     </div>
                 </c:forEach>
             </div>
+            <form action="checkout.jsp" method="post">
+                <button type="submit">Checkout</button>
+            </form>
         </c:otherwise>
     </c:choose>
 </section>

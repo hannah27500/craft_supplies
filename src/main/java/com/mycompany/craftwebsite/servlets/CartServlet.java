@@ -5,10 +5,8 @@
 package com.mycompany.craftwebsite.servlets;
 
 import com.mycompany.craftwebsite.ProductDAO;
-import com.mycompany.craftwebsite.business.Cart;
 import com.mycompany.craftwebsite.business.CartItem;
 import com.mycompany.craftwebsite.business.Product;
-import static com.mysql.cj.conf.PropertyKey.logger;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,53 +16,57 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-
-@WebServlet("/CartServlet")
+@WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
 public class CartServlet extends HttpServlet {
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        List<Product> cart = (List<Product>) session.getAttribute("cart");
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+          String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+
+        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         if (cart == null) {
             cart = new ArrayList<>();
+            session.setAttribute("cart", cart);
         }
 
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get the CartItemId of the item to be removed from the request
-        int cartItemID = Integer.parseInt(request.getParameter("cartItemID"));
-        String cartItemIDParam = request.getParameter("cartItemID");
-
-   if (cartItemIDParam == null || cartItemIDParam.isEmpty()) {
-     
-       response.sendRedirect("cart.jsp?error=Missing cart item ID");
-       
-    
-    return;
-} else {
-  System.out.println("Success");
-}
-
-        // Get the current session and the Cart
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-
-        if (cart != null) {
-            // Try to remove the item by its CartItemId
-            boolean removed = cart.removeById(cartItemID);
-
-            if (removed) {
-                // Successfully removed, update the session with the new cart
-                session.setAttribute("cart", cart);
+        if ("add".equals(action)) {
+            int productId = Integer.parseInt(request.getParameter("productID"));
+            Product product = getProductById(productId);
+           
+            // Check if the product is already in the cart
+            boolean found = false;
+            for (CartItem item : cart) {
+                if (item.getProductId() == productId) {
+                    item.increaseQuantity();  
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                cart.add(new CartItem(product));  // Add new CartItem if not found
+            }
+        } else if ("remove".equals(action)) {
+            int productId = Integer.parseInt(request.getParameter("cartItemID"));
+            for (Iterator<CartItem> iterator = cart.iterator(); iterator.hasNext();) {
+                CartItem item = iterator.next();
+                if (item.getProductId()  == productId) {
+                    iterator.remove();  // Remove product from cart
+                    break;
+                }
             }
         }
+        
 
-        // Redirect to the cart page or wherever you want the user to go after removal
         response.sendRedirect("cart.jsp");
+    }
+
+    private Product getProductById(int productId) {
+        Product product = ProductDAO.getProductByID(productId);
+        return product;
     }
 }

@@ -34,7 +34,7 @@ public class NewAccountServlet extends HttpServlet {
         String newPassword = request.getParameter("newPassword");
         
         User newUser = new User(firstName, lastName, newUsername, newPassword);
-
+        
         try (Connection conn = DBUtil.getConnection()) {
             String sql = "INSERT INTO user (firstName,lastName,username, password) VALUES (?, ?,?,?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {

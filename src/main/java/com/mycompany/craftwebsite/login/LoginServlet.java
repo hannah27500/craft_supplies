@@ -50,6 +50,12 @@ public class LoginServlet extends HttpServlet {
                     // Correct credentials
                     HttpSession session = request.getSession();
                     session.setAttribute("username", username); // Store username in session
+                    String storedFirstName = rs.getString("firstName");
+                    String storedLastName = rs.getString("lastName");
+                    String storedUserId = rs.getString("userId");
+                    session.setAttribute("firstName", storedFirstName);
+                     session.setAttribute("lastName", storedLastName);
+                     session.setAttribute("userId", storedUserId);
                     
                     // Redirect to home page or user profile
                     response.sendRedirect("home.jsp");

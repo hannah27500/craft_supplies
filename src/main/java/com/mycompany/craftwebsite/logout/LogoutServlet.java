@@ -21,28 +21,16 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        // Hardcoded credentials for testing (replace with database validation)
-        if ("admin".equals(username) && "123".equals(password)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", username); // Store user in session
-            response.sendRedirect("index.jsp"); // Redirect to home page
-        } else {
-            response.sendRedirect("index.jsp?error=InvalidCredentials"); // Redirect back with error message
+             HttpSession session = request.getSession(false); // Get session, don't create a new one if it doesn't exist
+        if (session != null) {
+            session.removeAttribute("cart"); // Clear the cart
+            session.invalidate(); // Invalidate session to log out user
         }
+            response.sendRedirect("index.jsp"); 
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

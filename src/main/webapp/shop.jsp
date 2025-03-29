@@ -53,12 +53,13 @@
                                 <button class="btn btn-secondary" disabled>Out of Stock</button>
                             </c:otherwise>
                         </c:choose>
-</form>
+                        </form>
+                            
                     </div>
                 </div>
             </div>
-            
-        </c:forEach>
+        </c:forEach> 
+
     </div>
 </section>
 
