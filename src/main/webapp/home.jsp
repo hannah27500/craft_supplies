@@ -21,37 +21,39 @@
    <p>Welcome to Craft Supplies! We are a company devoted to making crafting as efficient and affordable for our customers. We provide free shipping worldwide and ensure a fast delivery within 5 business days. <br><br> Enjoy shopping with us!</p>
     <h2>Featured Craft Supplies</h2>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <img src="images/paintbrushes.jpg" class="card-img-top" alt="Paintbrush Set">
-                <div class="card-body">
-                    <h5 class="card-title">Paintbrush Set</h5>
-                    <p class="card-text">$12.99</p>
-                    <a href="shop.jsp" class="btn btn-primary">View Product</a>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/watercolor_set.jpg" class="card-img-top" alt="Watercolor Set">
+                    <div class="card-body">
+                        <h5 class="card-title">Watercolor Set</h5>
+                        <p class="card-text">A beginner-friendly set of watercolor paints.</p>
+                        <p class="card-text">$12.99</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card">
-                <img src="images/yarn.jpg" class="card-img-top" alt="Colorful Yarn">
-                <div class="card-body">
-                    <h5 class="card-title">Colorful Yarn</h5>
-                    <p class="card-text">$9.99</p>
-                    <a href="shop.jsp" class="btn btn-primary">View Product</a>
+   
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/sewing_machine.jpg" class="card-img-top" alt="Sewing Machine">
+                    <div class="card-body">
+                        <h5 class="card-title">Sewing Machine</h5>
+                        <p class="card-text">Compact and easy-to-use sewing machine.</p>
+                        <p class="card-text">$99.99</p>
+                    </div>
                 </div>
             </div>
-        </div>
-          <div class="col-md-4">
-            <div class="card">
-                <img src="images/yarn.jpg" class="card-img-top" alt="Colorful Yarn">
-                <div class="card-body">
-                    <h5 class="card-title">Colorful Yarn</h5>
-                    <p class="card-text">$9.99</p>
-                    <a href="shop.jsp" class="btn btn-primary">Add To Cart</a>
+    
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="images/colored_pencils.jpg" class="card-img-top" alt="Colored Pencils">
+                    <div class="card-body">
+                        <h5 class="card-title">Colored Pencils Set</h5>
+                        <p class="card-text">Assorted colored pencils for vibrant artwork.
+</p>
+                        <p class="card-text">$14.99</p>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </section>
 <section class="m-5">

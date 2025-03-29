@@ -37,7 +37,6 @@
             <!-- Product Cards -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="images/${product.productID}.jpg" class="card-img-top" alt="${product.productName}">
                     <div class="card-body">
                         <h5 class="card-title">${product.productName}</h5>
                         <p class="card-text">${product.productDesc}</p>
