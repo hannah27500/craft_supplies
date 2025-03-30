@@ -4,7 +4,7 @@
  */
 package com.mycompany.craftwebsite.servlets;
 
-import com.mycompany.craftwebsite.ProductDAO;
+import com.mycompany.craftwebsite.DAOClass;
 import com.mycompany.craftwebsite.business.CartItem;
 import com.mycompany.craftwebsite.business.Product;
 import java.io.IOException;
@@ -66,7 +66,7 @@ public class CartServlet extends HttpServlet {
     }
 
     private Product getProductById(int productId) {
-        Product product = ProductDAO.getProductByID(productId);
+        Product product = DAOClass.getProductByID(productId);
         return product;
     }
 }

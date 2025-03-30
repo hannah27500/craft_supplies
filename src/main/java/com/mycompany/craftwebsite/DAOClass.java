@@ -1,12 +1,13 @@
 package com.mycompany.craftwebsite;
 
+import com.mycompany.craftwebsite.business.Orders;
 import com.mycompany.craftwebsite.business.Product;
 import jakarta.persistence.EntityManager;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
+public class DAOClass {
     public List<Product> getAllProducts() {
         List<Product> productList = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -52,6 +53,29 @@ public class ProductDAO {
             e.printStackTrace();
         }
         return product;
+    }
+  
+  public static List<Orders> getOrdersByUser(int userID) throws SQLException {
+        List<Orders> orderList = new ArrayList<>();
+        String sql = "SELECT * FROM orders WHERE userID = ? ORDER BY orderDate DESC";
+
+        try (Connection connection = DBUtil.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Orders order = new Orders(
+                        rs.getInt("orderID"),
+                        rs.getInt("userID"),
+                        rs.getDouble("totalPrice"),
+                        rs.getTimestamp("orderDate")
+                );
+                orderList.add(order);
+            }
+        }
+        return orderList;
     }
   
 }

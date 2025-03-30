@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.mycompany.craftwebsite.ProductDAO" %>
+<%@ page import="com.mycompany.craftwebsite.DAOClass" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +28,8 @@
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">${ProductDAO.getProductByID(cartItem.productId).productName}</h5>
-                                <p class="card-text">${ProductDAO.getProductByID(cartItem.productId).productDesc}</p>
+                                <h5 class="card-title">${DAOClass.getProductByID(cartItem.productId).productName}</h5>
+                                <p class="card-text">${DAOClass.getProductByID(cartItem.productId).productDesc}</p>
                                 <p class="card-text">$${cartItem.totalPrice}</p>
                                 <p class="card-text">Quantity: ${cartItem.quantity}</p>
                             </div>

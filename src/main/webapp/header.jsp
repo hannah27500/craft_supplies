@@ -10,7 +10,7 @@
              
             </ul>
 
-            <!-- Display Logged-in Username (Only if User is Logged In) -->
+            <!-- displays username if logged in -->
             <ul class="navbar-nav">
                 <%
                     String username = (String) session.getAttribute("username");
@@ -21,6 +21,7 @@
                         Logged in as: <%= username %>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class='dropdown-item' href='ViewOrdersServlet'>View Orders</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
                     </ul>
                 </li>

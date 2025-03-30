@@ -1,6 +1,6 @@
 package com.mycompany.craftwebsite.business;
 
-import com.mycompany.craftwebsite.ProductDAO;
+import com.mycompany.craftwebsite.DAOClass;
 
 public class CartItem {
     private int cartItemId;
