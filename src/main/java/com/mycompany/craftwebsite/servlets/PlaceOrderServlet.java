@@ -4,6 +4,7 @@
  */
 package com.mycompany.craftwebsite.servlets;
 
+import com.mycompany.craftwebsite.DAOClass;
 import com.mycompany.craftwebsite.DBUtil;
 import com.mycompany.craftwebsite.business.CartItem;
 import com.mycompany.craftwebsite.business.User;
@@ -76,15 +77,18 @@ public class PlaceOrderServlet extends HttpServlet {
                 itemStmt.setInt(3, item.getQuantity());
                 itemStmt.setDouble(4, item.getTotalPrice());
                 itemStmt.addBatch();
+                
+                DAOClass.updateProductQuantity(item.getProductId(), item.getQuantity());
+                
             }
             itemStmt.executeBatch();
 
             // Clear the cart after successful order placement
             session.removeAttribute("cart");
-
+     
             response.sendRedirect("orderPlaced.jsp?orderId=" + orderId); // Redirect to confirmation page
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error updating qty");
             response.sendRedirect("checkout.jsp?error=OrderFailed");
         }
     }

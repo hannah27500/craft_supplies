@@ -77,5 +77,26 @@ public class DAOClass {
         }
         return orderList;
     }
+  public static void updateProductQuantity(int productId, int quantityOrdered) {
+    String sql = "UPDATE product SET stockQuantity = stockQuantity - ? WHERE productID = ?";
+    
+    try (Connection conn = DBUtil.getConnection(); // Get DB connection
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, quantityOrdered);
+        stmt.setInt(2, productId);
+        
+        int rowsUpdated = stmt.executeUpdate();
+        
+        if (rowsUpdated > 0) {
+            System.out.println("Product quantity updated successfully.");
+        } else {
+            System.out.println("Error: Product not found or stock insufficient.");
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
   
 }
