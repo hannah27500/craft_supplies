@@ -44,7 +44,7 @@ public class PlaceOrderServlet extends HttpServlet {
         }
         // Form Validation for card number
         String cardNum = request.getParameter("card-number");
-        if (cardNum.length() != 3) {
+        if (cardNum.length() != 16) {
             response.sendRedirect("checkout.jsp?error=InvalidCardNum");
             return;
         }
