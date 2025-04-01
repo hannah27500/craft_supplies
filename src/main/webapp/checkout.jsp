@@ -70,15 +70,24 @@
                 </div>
                 <div class="mb-3">
                     <label for="zip" class="form-label">Zip Code</label>
-                    <input type="text" id="zip" name="zip" class="form-control" required>
+                    <input type="text" id="zip" name="zip" class="form-control"  required>
+                    <c:if test="${param.error == 'InvalidZip'}">
+                        <p style="color: red;">Invalid Zip Code. Please enter a 5-digit ZIP code.</p>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="card-number" class="form-label">Card Number</label>
                     <input type="text" id="card-number" name="card-number" class="form-control" required>
+                    <c:if test="${param.error == 'InvalidCardNum'}">
+                        <p style="color: red;">Invalid Card Number. Please enter a 16-digit Card Number.</p>
+                    </c:if>
                 </div>
                 <div class="mb-3">
                     <label for="cvv" class="form-label">CVV</label>
                     <input type="text" id="cvv" name="cvv" class="form-control" required>
+                    <c:if test="${param.error == 'InvalidCVV'}">
+                        <p style="color: red;">Invalid CVV. Please enter a 3-digit CVV.</p>
+                    </c:if>
                 </div>
                 <button type="submit">Place Order</button>
             </form>

@@ -29,23 +29,31 @@ import java.util.logging.Logger;
 @WebServlet("/PlaceOrderServlet")
 public class PlaceOrderServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
          HttpSession session = request.getSession();
           String userIdStr = (String) session.getAttribute("userId");
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         int userId = Integer.parseInt(userIdStr);
-
-       
+        
+        // Form Validation for zip code
+        String zipCode = request.getParameter("zip");
+        if (zipCode.length() != 5) {
+            response.sendRedirect("checkout.jsp?error=InvalidZip");
+            return;
+        }
+        // Form Validation for card number
+        String cardNum = request.getParameter("card-number");
+        if (cardNum.length() != 3) {
+            response.sendRedirect("checkout.jsp?error=InvalidCardNum");
+            return;
+        }
+        // Form Validation for cvv
+        String cvv = request.getParameter("cvv");
+        if (cvv.length() != 3) {
+            response.sendRedirect("checkout.jsp?error=InvalidCVV");
+            return;
+        }
 
         double totalPrice = 0;
         for (CartItem item : cart) {
