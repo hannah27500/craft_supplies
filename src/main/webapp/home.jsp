@@ -22,7 +22,7 @@
     <h2>Featured Craft Supplies</h2>
     <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card bg-gray" style="color:white;">
                     <img src="images/watercolor_set.jpg" class="card-img-top" alt="Watercolor Set">
                     <div class="card-body">
                         <h5 class="card-title">Watercolor Set</h5>
@@ -33,7 +33,7 @@
             </div>
    
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card bg-gray" style="color:white;">
                     <img src="images/sewing_machine.jpg" class="card-img-top" alt="Sewing Machine">
                     <div class="card-body">
                         <h5 class="card-title">Sewing Machine</h5>
@@ -44,7 +44,7 @@
             </div>
     
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card bg-gray" style="color:white;">
                     <img src="images/colored_pencils.jpg" class="card-img-top" alt="Colored Pencils">
                     <div class="card-body">
                         <h5 class="card-title">Colored Pencils Set</h5>
