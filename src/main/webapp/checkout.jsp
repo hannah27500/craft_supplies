@@ -53,7 +53,7 @@
                     <input type="text" id="firstName" name="firstName" class="form-control" value="${sessionScope.firstName}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="lastName" class="form-label">First</label>
+                    <label for="lastName" class="form-label">Last</label>
                     <input type="text" id="lastName" name="lastName" class="form-control" value="${sessionScope.lastName}" required>
                 </div>
                 <div class="mb-3">
