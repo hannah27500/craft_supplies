@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,6 +30,10 @@ public class ViewOrdersServlet extends HttpServlet {
 
         try {
             List<Orders> orders = DAOClass.getOrdersByUser(userId);
+            if (orders == null) {
+                orders = new ArrayList<>(); // Ensure it's never null
+            }
+            
             request.setAttribute("orders", orders);
         } catch (SQLException e) {
             e.printStackTrace();
