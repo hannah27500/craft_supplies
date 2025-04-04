@@ -4,7 +4,9 @@
  */
 package com.mycompany.craftwebsite.login;
 
+import com.mycompany.craftwebsite.DAOClass;
 import com.mycompany.craftwebsite.DBUtil;
+import com.mycompany.craftwebsite.business.CartItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
 /**
@@ -56,6 +59,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("firstName", storedFirstName);
                      session.setAttribute("lastName", storedLastName);
                      session.setAttribute("userId", storedUserId);
+                    
                     
                     // Redirect to home page or user profile
                     response.sendRedirect("home.jsp");

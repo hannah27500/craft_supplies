@@ -14,7 +14,12 @@ public class CartItem {
         this.quantity = 1;
         this.totalPrice = product.getPrice();
     }
-
+    public CartItem() {
+        this.cartItemId = 0;
+        this.productId = -1;
+        this.quantity = 0;
+        this.totalPrice = 0;
+    }
     // Getters and Setters
     public int getCartItemId() {
         return cartItemId;
@@ -38,7 +43,7 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        setTotalPrice(quantity * getTotalPrice());  // Recalculate total price if quantity changes
+        setTotalPrice(quantity * getTotalPrice());  
     }
 
      
@@ -46,7 +51,7 @@ public class CartItem {
         return totalPrice;
     }
 
-    private void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
     public void increaseQuantity() {

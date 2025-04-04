@@ -1,8 +1,10 @@
 package com.mycompany.craftwebsite;
 
+import com.mycompany.craftwebsite.business.CartItem;
 import com.mycompany.craftwebsite.business.Orders;
 import com.mycompany.craftwebsite.business.Product;
 import jakarta.persistence.EntityManager;
+import jakarta.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,5 +100,6 @@ public class DAOClass {
         e.printStackTrace();
     }
 }
+
   
 }

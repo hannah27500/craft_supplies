@@ -33,7 +33,7 @@
                         <tr>
                             <td>${order.orderID}</td>
                             <td><fmt:formatNumber value="${order.totalPrice}" type="currency"/></td>
-                            <td><fmt:formatDate value="${order.orderDate}" pattern="MM/DD/yyyy HH:MM"/></td>
+                            <td><fmt:formatDate value="${order.orderDate}" pattern="MM/dd/yyyy HH:mm"/></td>
                         </tr>
                         </c:forEach>
                     </tbody>
