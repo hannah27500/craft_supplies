@@ -4,6 +4,7 @@
  */
 package com.mycompany.craftwebsite.servlets;
 
+import com.mycompany.craftwebsite.DAOClass;
 import com.mycompany.craftwebsite.DBUtil;
 import com.mycompany.craftwebsite.business.User;
 import java.io.IOException;
@@ -45,10 +46,14 @@ public class NewAccountServlet extends HttpServlet {
                        // Execute the update
                 int rowsAffected = stmt.executeUpdate();
                 if (rowsAffected > 0) {
-                  
+                   int userId = (Integer) DAOClass.getUserIdByUsername(newUsername);
+                   String userIdStr = String.valueOf(userId);
                     HttpSession session = request.getSession();
                     session.setAttribute("username", newUsername); // Store username in session
-                    // Redirect to login page after successful registration
+                    session.setAttribute("firstName", firstName);
+                     session.setAttribute("lastName", lastName);
+                     session.setAttribute("userId", userIdStr);
+                    // Redirect to home page to shop after successful registration
                     response.sendRedirect("home.jsp");
                 } else {
                     response.getWriter().println("Error: Could not create account.");

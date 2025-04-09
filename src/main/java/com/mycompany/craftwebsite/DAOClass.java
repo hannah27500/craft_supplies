@@ -100,6 +100,46 @@ public class DAOClass {
         e.printStackTrace();
     }
 }
+  
+    public static void increaseProductQuantity(int productId, int quantityOrdered) {
+    String sql = "UPDATE product SET stockQuantity = stockQuantity + ? WHERE productID = ?";
+    
+    try (Connection conn = DBUtil.getConnection(); // Get DB connection
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, quantityOrdered);
+        stmt.setInt(2, productId);
+        
+        int rowsUpdated = stmt.executeUpdate();
+        
+        if (rowsUpdated > 0) {
+            System.out.println("Product quantity updated successfully.");
+        } else {
+            System.out.println("Error: Product not found or stock insufficient.");
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    public static int getUserIdByUsername(String username) throws SQLException {
+    int userId = -1; // default
+    
+    String sql = "SELECT userId FROM user WHERE username = ?";
+    try (Connection conn = DBUtil.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setString(1, username);
+        
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                userId = rs.getInt("userId"); // Retrieve the userId from the result set
+            }
+        }
+    }
+    
+    return userId;
+}
 
   
 }
